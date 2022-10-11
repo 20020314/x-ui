@@ -20,3 +20,21 @@ jobs:
   cpuRequirement: 250
   memoryRequirement: 256
   timeout: 3600
+- name: 构建
+  jobExecutor: chaikair/dockeri:latest
+  steps:
+  - !CommandStep
+    name: build
+    runInContainer: true
+    image: chaikair/dockeri:latest
+    interpreter: !DefaultInterpreter
+      commands:
+      - docker build -t chaikair/x-ui:1.0 .
+    useTTY: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  cpuRequirement: 250
+  memoryRequirement: 256
+  timeout: 3600
