@@ -1,15 +1,1 @@
 version: 18
-jobs:
-- name: 构建
-  steps:
-  - !BuildImageStep
-    name: chaikair/x-ui
-    tags: '1.2'
-    publish: true
-    condition: ALWAYS
-  retryCondition: never
-  maxRetries: 3
-  retryDelay: 30
-  cpuRequirement: 250
-  memoryRequirement: 256
-  timeout: 3600
