@@ -28,7 +28,12 @@ jobs:
     image: chaikair/dockeri:latest
     interpreter: !DefaultInterpreter
       commands:
+      - apk add git bash
+      - git clone https://github.com/20020314/x-ui
+      - cd x-ui
       - docker build -t chaikair/x-ui:1.0 .
+      - docker login --username=chaikair --password=389609066
+      - docker pusb chaikair/x-uk：1.0
     useTTY: true
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   retryCondition: never
