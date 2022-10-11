@@ -21,7 +21,6 @@ jobs:
   memoryRequirement: 256
   timeout: 3600
 - name: 构建
-  jobExecutor: chaikair/dockeri:latest
   steps:
   - !CommandStep
     name: build
