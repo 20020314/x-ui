@@ -42,3 +42,24 @@ jobs:
   cpuRequirement: 250
   memoryRequirement: 256
   timeout: 3600
+- name: 启动
+  steps:
+  - !CommandStep
+    name: Start
+    runInContainer: true
+    image: chaikair/dockeri:latest
+    interpreter: !DefaultInterpreter
+      commands:
+      - docker run -itd --network=Auto \
+      - '    -v $PWD/db/:/etc/x-ui/ \'
+      - '    -v $PWD/cert/:/root/cert/ \'
+      - '    --name x-ui --restart=unless-stopped \'
+      - '    enwaiax/x-ui:latest'
+    useTTY: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  cpuRequirement: 250
+  memoryRequirement: 256
+  timeout: 3600
